@@ -3,27 +3,26 @@ name: Deploy Hugo site to GitHub Pages
 on:
   push:
     branches:
-      - main  # 只有 push 到 main 分支才會觸發部署
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.111.3'
 
-      - name: Build Hugo site
-        run: hugo --minify
+      - name: Build
+        run: hugo
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: gh-pages
