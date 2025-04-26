@@ -1,1 +1,8 @@
+# 忽略 Hugo 输出目录
 public/
+
+# 忽略 macOS 系统文件
+.DS_Store
+
+# 忽略 Hugo 自动锁定档
+.hugo_build.lock
